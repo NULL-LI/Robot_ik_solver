@@ -2,6 +2,8 @@ clear;
 clc;
 close all;
 
+equationMatrixNum=7;
+
 t=sym('t%d',[1,6]);
 al=sym('al%d',[1,6]);
 a=sym('a%d',[1,6]);
@@ -28,8 +30,8 @@ al(4)=pi/2;
 al(5)=-pi/2;
 al(6)=0;
 
-thetaMatrix=zeros(3,4,7);
-equationMatrix=sym('equation%d',[3,4,7]);
+thetaMatrix=zeros(3,4,equationMatrixNum);
+equationMatrix=sym('equation%d',[3,4,equationMatrixNum]);
 
 i=1;
 T1=[cos(t(i)),-sin(t(i))*cos(al(i)),sin(t(i))*sin(al(i)),a(i)*cos(t(i));
@@ -92,13 +94,8 @@ disp('T14');
 T14=T1*T2*T3*T4;
 T41=Tf/T6/T5;
 
- 
- tmp_equation_matrix=simplify(T14-T41);
-  class(equationMatrix(:,:,i))
- class(simplify(T14-T41))
- class(tmp_equation_matrix)
-equationMatrix(1,1,i)=tmp_equation_matrix(1,1);
-thetaMatrix(:,:,i)=check_theta_variable();
+equationMatrix=equation_store(equationMatrix,simplify(T14-T41),i);
+thetaMatrix(:,:,i)=check_theta_variable(equationMatrix(:,:,i));
 i=i+1;
 
 tmp1=simplify(T14-T41);
@@ -114,7 +111,7 @@ simplify(tmp1(3,4))
 
 
 disp('T25');
-equationMatrix(:,:,i)=simplify(T2*T3*T4*T5-T1\Tf/T6);
+equationMatrix=equation_store(equationMatrix,simplify(T2*T3*T4*T5-T1\Tf/T6),i);
 thetaMatrix(:,:,i)=check_theta_variable(equationMatrix(:,:,i));
 i=i+1;
 
@@ -131,25 +128,25 @@ simplify(tmp1(3,1))
 % theta6 = simplify(solve(tmp1(3,2)-tmp2(3,2),t(6)))
 
 disp('T36');
-equationMatrix(:,:,i)=simplify(T3*T4*T5*T6-T2\T1\Tf);
+equationMatrix=equation_store(equationMatrix,simplify(T3*T4*T5*T6-T2\T1\Tf),i);
 thetaMatrix(:,:,i)=check_theta_variable(equationMatrix(:,:,i));
 i=i+1;
 
 
 disp('T13');
-equationMatrix(:,:,i)=simplify(T1*T2*T3-Tf/T6/T5/T4);
+equationMatrix=equation_store(equationMatrix,simplify(T1*T2*T3-Tf/T6/T5/T4),i);
 thetaMatrix(:,:,i)=check_theta_variable(equationMatrix(:,:,i));
 i=i+1;
 
 
 disp('T24');
-equationMatrix(:,:,i)=simplify(T2*T3*T4-T1\Tf/T6/T5);
+equationMatrix=equation_store(equationMatrix,simplify(T2*T3*T4-T1\Tf/T6/T5),i);
 thetaMatrix(:,:,i)=check_theta_variable(equationMatrix(:,:,i));
 i=i+1;
 
 
 disp('T35');
-equationMatrix(:,:,i)=simplify(T3*T4*T5-T2\T1\Tf/T6);
+equationMatrix=equation_store(equationMatrix,simplify(T3*T4*T5-T2\T1\Tf/T6),i);
 thetaMatrix(:,:,i)=check_theta_variable(equationMatrix(:,:,i));
 i=i+1;
 
@@ -161,9 +158,32 @@ disp("t4");
 simplify(tmp1(2,4))
 
 disp('T46');
-equationMatrix(:,:,i)=simplify(T4*T5*T6-T3\T2\T1\Tf);
+equationMatrix=equation_store(equationMatrix,simplify(T4*T5*T6-T3\T2\T1\Tf),i);
 thetaMatrix(:,:,i)=check_theta_variable(equationMatrix(:,:,i));
 i=i+1;
 
-equationMatrix
-thetaMatrix
+disp(' ');
+for i=1:3
+    for j=1:4
+        for n=1:equationMatrixNum
+            if(thetaMatrix(i,j,n)<10)
+                disp(thetaMatrix(i,j,n));
+                disp(equationMatrix(i,j,n));
+            end
+        end
+    end
+end
+        
+for i=1:3
+    for j=1:4
+        for n=1:equationMatrixNum
+            if(10<thetaMatrix(i,j,n)&&thetaMatrix(i,j,n)<100)
+                disp(thetaMatrix(i,j,n));
+                disp(equationMatrix(i,j,n));
+            end
+        end
+    end
+end     
+        
+        
+
