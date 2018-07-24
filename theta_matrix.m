@@ -134,6 +134,10 @@ disp(' ');
 
 knownVariables=[];
 k=1;
+
+disp('Final T matrix:');
+disp(Tf);
+
 while(length(knownVariables)<6&&k<10)
     str=sprintf('\nStep %d',k);
     disp(str);
@@ -152,7 +156,8 @@ while(length(knownVariables)<6&&k<10)
                     if(~ismember(thetaMatrix{i,j,n}(1),knownVariables))
                         knownVariables=[knownVariables,thetaMatrix{i,j,n}(1)];
                     end
-                    disp(thetaMatrix{i,j,n});
+                    str=sprintf('\nSolve theta %d :',thetaMatrix{i,j,n});
+                    disp(str);
                     disp(equationMatrix(i,j,n));
                 end
             end
