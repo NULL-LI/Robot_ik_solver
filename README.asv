@@ -5,4 +5,4 @@ This program can give out an equation-chain that can lead to the closed-form sym
 
 Usually the first step will show equaitons that contain only one unknown theta.
 On the following steps, the solved thetas will be taken as known to give solutions to other unsolved thetas.
-In the end, all the thetas will get solvable.
+In the end, all the thetas 
