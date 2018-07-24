@@ -130,6 +130,11 @@ equationMatrix=equation_store(equationMatrix,simplify(T4*T5*T6-T3\T2\T1\Tf),i);
 thetaMatrix(:,:,i)=check_theta_variable_cell(equationMatrix(:,:,i));
 i=i+1;
 
+
+if(i~=equationMatrixNum+1)
+    error('equationMatrixNum error !');
+end
+
 disp(' ');
 
 knownVariables=[];
@@ -151,6 +156,10 @@ while(length(knownVariables)<6&&k<10)
                     end
                 end
             end
+        end
+    end
+    for i=1:3
+        for j=1:4            
             for n=1:equationMatrixNum
                 if(length(thetaMatrix{i,j,n})==1)
                     if(~ismember(thetaMatrix{i,j,n}(1),knownVariables))
