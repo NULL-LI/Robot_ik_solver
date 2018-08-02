@@ -15,20 +15,20 @@ for i=1:6
     syms (['pf',num2str(i)]);
 end
 
-d(2)=0;
-d(3)=0;
-
-a(1)=0;
-a(4)=0;
+% d(2)=0;
+% d(3)=0;
+% 
+% a(1)=0;
+% a(4)=0;
 a(5)=0;
-a(6)=0;
+% a(6)=0;
 
-al(1)=pi/2;
+% al(1)=pi/2;
 al(2)=0;
 al(3)=0;
-al(4)=pi/2;
-al(5)=-pi/2;
-al(6)=0;
+% al(4)=pi/2;
+% al(5)=-pi/2;
+% al(6)=0;
 
 thetaMatrix=cell(3,4,equationMatrixNum);
 equationMatrix=sym('equation%d',[3,4,equationMatrixNum]);
@@ -91,41 +91,41 @@ Tf=[nf1,of1,af1,pf1;
 
 i=1;
 
-% disp('T14');
+disp('T14');
 equationMatrix=equation_store(equationMatrix,simplify(T1*T2*T3*T4-Tf/T6/T5),i);
 thetaMatrix(:,:,i)=check_theta_variable_cell(equationMatrix(:,:,i));
 i=i+1;
 
 
-% disp('T25');
+disp('T25');
 equationMatrix=equation_store(equationMatrix,simplify(T2*T3*T4*T5-T1\Tf/T6),i);
 thetaMatrix(:,:,i)=check_theta_variable_cell(equationMatrix(:,:,i));
 i=i+1;
 
-% disp('T36');
+disp('T36');
 equationMatrix=equation_store(equationMatrix,simplify(T3*T4*T5*T6-T2\T1\Tf),i);
 thetaMatrix(:,:,i)=check_theta_variable_cell(equationMatrix(:,:,i));
 i=i+1;
 
 
-% disp('T13');
+disp('T13');
 equationMatrix=equation_store(equationMatrix,simplify(T1*T2*T3-Tf/T6/T5/T4),i);
 thetaMatrix(:,:,i)=check_theta_variable_cell(equationMatrix(:,:,i));
 i=i+1;
 
 
-% disp('T24');
+disp('T24');
 equationMatrix=equation_store(equationMatrix,simplify(T2*T3*T4-T1\Tf/T6/T5),i);
 thetaMatrix(:,:,i)=check_theta_variable_cell(equationMatrix(:,:,i));
 i=i+1;
 
 
-% disp('T35');
+disp('T35');
 equationMatrix=equation_store(equationMatrix,simplify(T3*T4*T5-T2\T1\Tf/T6),i);
 thetaMatrix(:,:,i)=check_theta_variable_cell(equationMatrix(:,:,i));
 i=i+1;
 
-% disp('T46');
+disp('T46');
 equationMatrix=equation_store(equationMatrix,simplify(T4*T5*T6-T3\T2\T1\Tf),i);
 thetaMatrix(:,:,i)=check_theta_variable_cell(equationMatrix(:,:,i));
 i=i+1;
